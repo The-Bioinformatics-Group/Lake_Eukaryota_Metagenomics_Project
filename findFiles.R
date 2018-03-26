@@ -1,4 +1,3 @@
-
 path <-  file.path("C:", "Users", "Karamech", "Documents", "Utbildning", "Kandidatarbete", "Data") #Change to root of all data files
 
 library(dada2); packageVersion("dada2")
@@ -34,4 +33,13 @@ R1FilesWithPath <- allFilesWithPath[R1pos]
 R2pos <- grep("R2", allFilesWithPath)
 R2FilesWithPath <- allFilesWithPath[R2pos]
 
+sample.names <- sapply(strsplit(basename(R1FilesWithPath), "_"), `[`, 1)
 
+filt_path <- file.path(path, "filtered") # Path for placing filtered files
+R1FileredPath <- file.path(filt_path, paste0(sample.names, "_F_filt.fastq.gz"))
+R2FilteredPath <- file.path(filt_path, paste0(sample.names, "_R_filt.fastq.gz"))
+
+out <- filterAndTrim(R1FilesWithPath, R1FileredPath, R2FilesWithPath, R2FilteredPath, truncLen=c(240,160),
+              maxN=0, maxEE=c(2,2), truncQ=2, rm.phix=TRUE,
+              compress=TRUE, multithread=FALSE) # On Windows set multithread=FALSE, otherwise to FALSE
+head(out)
