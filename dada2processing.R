@@ -38,14 +38,33 @@ R2FilesWithPath <- allFilesWithPath[R2pos]
 # plotQualityProfile(R2FilesWithPath)
 
 
-##filtering and trimming all files and creating subdirectory with filtered files.
+##filtering and trimming all files. Creating subdirectory with filtered files.
 sample.names <- sapply(strsplit(basename(R1FilesWithPath), "_"), `[`, 1)
 
 filt_path <- file.path(path, "filtered") # Path for placing filtered files
 R1FilteredPath <- file.path(filt_path, paste0(sample.names, "_F_filt.fastq.gz"))
 R2FilteredPath <- file.path(filt_path, paste0(sample.names, "_R_filt.fastq.gz"))
 
+#Parameters of filterAndTrim may need to be adjusted
 out <- filterAndTrim(R1FilesWithPath, R1FilteredPath, R2FilesWithPath, R2FilteredPath, truncLen=c(240,160),
               maxN=0, maxEE=c(2,2), truncQ=2, rm.phix=TRUE,
-              compress=TRUE, multithread=FALSE) # On Windows set multithread=FALSE, otherwise to TRUE
+              compress=TRUE, multithread=FALSE) # On Windows set multithread=FALSE, otherwise TRUE
 head(out)
+
+
+##Learning error rates of the filtered files(Computationally intesive)
+errF <- learnErrors(R1FilteredPath, multithread=FALSE)
+errR <- learnErrors(R2FilteredPath, multithread=FALSE)
+
+# Can plot error rates
+# plotErrors(errF, nominalQ=TRUE)
+# plotErrors(errR, nominalQ=TRUE)
+
+
+##Dereplicate the filtered files (removing duplicates of sequences)
+derepF <- derepFastq(R1FilteredPath, verbose=TRUE) #Reading all files to memory? May have to modify befor running all data
+derepR <- derepFastq(R2FilteredPath, verbose=TRUE)
+
+names(derepF) <- sample.names
+names(derepR) <- sample.names
+
