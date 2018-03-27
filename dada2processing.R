@@ -68,3 +68,9 @@ derepR <- derepFastq(R2FilteredPath, verbose=TRUE)
 names(derepF) <- sample.names
 names(derepR) <- sample.names
 
+
+##Sample Inference
+dadaF <- dada(derepF, err=errF, multithread=FALSE)
+dadaR <- dada(derepR, err=errR, multithread=FALSE)
+
+
