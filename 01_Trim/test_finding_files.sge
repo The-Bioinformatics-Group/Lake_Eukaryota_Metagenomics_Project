@@ -5,8 +5,6 @@
 
 path <-  file.path("..", "00_Data") #Change to root of all data files
 
-library(dada2); packageVersion("dada2")
-
 ## Finding all data files in the root data directory
 ## and storing complete path in vector
 dataFolders <- list.files(path, pattern="Sample") #vector of folders containing data
