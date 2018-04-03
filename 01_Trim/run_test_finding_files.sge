@@ -2,6 +2,4 @@
 #$ -q node0
 #$ -S /bin/bash
 
-R = "$(/usr/local/packages/R-3.1.3/bin/R) --no-save"
-
-R < test_finding_files.R > test_finding_files.out
+R --no-save < test_finding_files.R > test_finding_files.out
