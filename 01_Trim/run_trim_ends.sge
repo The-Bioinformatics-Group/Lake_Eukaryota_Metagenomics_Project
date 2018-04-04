@@ -1,0 +1,5 @@
+#$ -cwd
+#$ -q node0
+#$ -S /bin/bash
+
+R --no-save --quiet < trim_ends.R > trim_ends.out
