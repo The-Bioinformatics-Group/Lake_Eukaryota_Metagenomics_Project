@@ -2,4 +2,6 @@
 #$ -q node0
 #$ -S /bin/bash
 
-R --no-save < test_finding_files.R > test_finding_files.out
+module load R/v.3.2.3
+
+R --no-save --quiet < test_finding_files.R > test_finding_files.out
