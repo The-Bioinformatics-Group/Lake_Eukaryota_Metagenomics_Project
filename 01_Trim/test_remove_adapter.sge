@@ -1,0 +1,11 @@
+#$ -cwd
+#$ -q node0
+#$ -S /bin/bash
+
+module load cutadapt/v1.10
+module load Fastqc/v0.11.4
+
+cutadapt -u 9 -o NoPrimer_l100e1_CCATAGCA-TAGATCGC_L001_R1_001.fastq.gz l100e1_CCATAGCA-TAGATCGC_L001_R1_001.fastq.gz
+
+fastqc NoPrimer_l100e1_CCATAGCA-TAGATCGC_L001_R1_001.fastq.gz
+
