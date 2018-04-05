@@ -12,15 +12,15 @@ mkdir -p $DATADIR/AdaptersRemoved
 
 for D in $DIRS ##if D is a directory with name containing "Sample_" run cut adapt for all files ending with ".gz"
 do
-	while[$limit -gt 0]; 
+	for f in $D/*.fastq.gz
 	do
-		echo $D
-		for f in $D/*.fastq.gz
-		do
-    		cutadapt -u 15 -o $DATADIR/AdaptersRemoved/$f $f 
-    	done
-    	let limit-=1
+    	cutadapt -u 15 -o $DATADIR/AdaptersRemoved/$f $f 
     done
+    if[ $limit -eq 1 ]
+    then
+    	break
+    fi
+    let limit-=1
 done
 
 
