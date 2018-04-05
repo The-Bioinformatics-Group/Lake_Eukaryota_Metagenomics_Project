@@ -6,7 +6,7 @@ module load cutadapt/v1.10
 ## module load Fastqc/v0.11.4
 
 limit=5
-DATADIR=/../00_Data
+DATADIR=../00_Data
 DIRS=$DATADIR/Sample_*
 mkdir -p $DATADIR/AdaptersRemoved
 
