@@ -14,7 +14,8 @@ for D in $DIRS ##if D is a directory with name containing "Sample_" run cut adap
 do
 	for f in $D/*.fastq.gz
 	do
-    	cutadapt -u 15 -o $DATADIR/AdaptersRemoved/$f $f 
+		FILE=${f#$D}
+    	cutadapt -u 15 -o $DATADIR/AdaptersRemoved/$FILE $f 
     done
     if [ $limit -eq 1 ]
     then
