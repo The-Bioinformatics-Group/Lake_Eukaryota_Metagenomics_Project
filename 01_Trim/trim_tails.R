@@ -49,9 +49,8 @@ R2TrimPath <- file.path(trim_path, paste0(sample.names, "_R_trim.fastq.gz"))
 
 ## Filtering files using trimTailsw
 trimWhen <- character(length=1)
-trimWhen[1] <- "B"
+trimWhen[1] <- "0" # ASCII character, trimTailsw trims at first instance from the left of base with phred score <= trimWhen"
 nbrFail <- integer(1)
-nbrFail[1] <- 1
-##t <- iconv(trimWhen, "ASCII", "UTF-8")
+nbrFail[1] <- 3 # Number of bases with phred score <= to trimWhen nessecary for triggering trimming
 trimTailw(R1FilesWithPath, k=nbrFail, a=trimWhen, halfwidth=5, destinations=R1TrimPath, ranges=FALSE, right=TRUE)
 trimTailw(R2FilesWithPath, k=nbrFail, a=trimWhen, halfwidth=5, destinations=R2TrimPath, ranges=FALSE, right=TRUE)
