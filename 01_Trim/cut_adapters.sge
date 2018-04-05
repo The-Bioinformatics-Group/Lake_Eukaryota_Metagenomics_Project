@@ -16,7 +16,7 @@ do
 	do
     	cutadapt -u 15 -o $DATADIR/AdaptersRemoved/$f $f 
     done
-    if[ $limit -eq 1 ]
+    if [ $limit -eq 1 ]
     then
     	break
     fi
