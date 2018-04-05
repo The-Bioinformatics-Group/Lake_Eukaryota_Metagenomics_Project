@@ -1,0 +1,23 @@
+#$ -cwd
+#$ -q node0
+#$ -S /bin/bash
+
+module load cutadapt/v1.10
+## module load Fastqc/v0.11.4
+
+DATADIR=/../00_Data
+DIRS=$DATADIR/Sample_*
+mkdir -p $DATADIR/AdaptersRemoved
+for D in $DIRS ##if D is a directory with name containing "Sample_" run cut adapt for all files ending with ".gz"
+do
+	echo $D
+	for f in $D/*.fastq.gz
+	do
+    	cutadapt -u 15 -o $DATADIR/AdaptersRemoved/f $f 
+    done
+done
+
+
+## fastqc ../00_Data/Sample_l100e1/TestAdaptersRemoved/NoPrimer3_l100e1_CCATAGCA-TAGATCGC_L001_R1_001.fastq.gz
+
+
