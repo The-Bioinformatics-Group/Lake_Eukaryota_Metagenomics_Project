@@ -2,20 +2,32 @@
 #$ -q node0
 #$ -S /bin/bash
 
+##For all directories with name containing "Sample_" in root data directory
+##run cutadapt for all files ending with ".gz"
+##Specifies what to cut depenting on if the file contains forward(R1) or reverse(R2) reads
+##Set limit to max number of samples that should be processed
+
 module load cutadapt/v1.10
 ## module load Fastqc/v0.11.4
 
 limit=5
-DATADIR=../00_Data
-DIRS=$DATADIR/Sample_*
-mkdir -p $DATADIR/AdaptersRemoved
+DATADIR=../00_Data #Root of all data
+DIRS=$DATADIR/Sample_*				 	#All directories in which to look for data files
+mkdir -p $DATADIR/R1AdaptersRemoved 	#Creating directores for new fastq files
+mkdir -p $DATADIR/R2AdaptersRemoved
 
-for D in $DIRS ##if D is a directory with name containing "Sample_" run cut adapt for all files ending with ".gz"
+for D in $DIRS 
 do
 	for f in $D/*.fastq.gz
 	do
 		FILE=${f#$D}
-    	cutadapt -u 15 -o $DATADIR/AdaptersRemoved/$FILE $f 
+		if [[ $FILE =~ R1 ]]
+    	then
+    		cutadapt -g NNNNCGGTAAYTCCAGCTCYV -o $DATADIR/R1AdaptersRemoved/$FILE $f
+    	elif [[ $FILE =~ R2 ]]
+    	then
+    		cutadapt -u 15 -o $DATADIR/R2AdaptersRemoved/$FILE $f
+    	fi 
     done
     if [ $limit -eq 1 ]
     then
