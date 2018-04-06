@@ -5,7 +5,7 @@
 module load cutadapt/v1.10
 module load Fastqc/v0.11.4
 
-cutadapt -u 66 -o ../00_Data/Sample_l100e1/TestAdaptersRemoved/NoPrimer3_l100e1_CCATAGCA-TAGATCGC_L001_R1_001.fastq.gz ../00_Data/Sample_l100e1/l100e1_CCATAGCA-TAGATCGC_L001_R1_001.fastq.gz
+cutadapt -a NNNNCGGTAAYTCCAGCTCYV -o ../00_Data/Sample_l100e1/TestAdaptersRemoved/NoPrimer4_l100e1_CCATAGCA-TAGATCGC_L001_R1_001.fastq.gz ../00_Data/Sample_l100e1/l100e1_CCATAGCA-TAGATCGC_L001_R1_001.fastq.gz
 
-fastqc ../00_Data/Sample_l100e1/TestAdaptersRemoved/NoPrimer3_l100e1_CCATAGCA-TAGATCGC_L001_R1_001.fastq.gz
+fastqc ../00_Data/Sample_l100e1/TestAdaptersRemoved/NoPrimer4_l100e1_CCATAGCA-TAGATCGC_L001_R1_001.fastq.gz
 
