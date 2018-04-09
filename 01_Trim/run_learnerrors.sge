@@ -1,0 +1,7 @@
+#$ -cwd
+#$ -q node0
+#$ -S /bin/bash
+
+module load R/v.3.2.3
+
+R --no-save --quiet < learn_error_rates.R > learn_error_rates.out

@@ -44,8 +44,8 @@ R2FilesWithPath <- allFilesWithPath[R2pos]
 sample.names <- sapply(strsplit(basename(R1FilesWithPath), "_"), `[`, 1)
 trim_path <- file.path(path, "trimmed") #Path for placing copies to be trimmed files
 dir.create(trim_path)
-R1TrimPath <- file.path(trim_path, paste0(sample.names, "_F_trim.fastq.gz"))
-R2TrimPath <- file.path(trim_path, paste0(sample.names, "_R_trim.fastq.gz"))
+R1TrimPath <- file.path(trim_path, paste0(sample.names, "_R1_trim.fastq.gz"))
+R2TrimPath <- file.path(trim_path, paste0(sample.names, "_R2_trim.fastq.gz"))
 
 ## Filtering files using trimTailsw
 trimWhen <- character(length=1)
