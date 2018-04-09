@@ -1,4 +1,4 @@
-filtpath <-  file.path(file.path("..", "00_Data", "trimmed") #Change to root of filtered Data
+filtpath <-  file.path(file.path("..", "00_Data", "trimmed")) #Change to root of filtered Data
 
 library(dada2); packageVersion("dada2")
 
