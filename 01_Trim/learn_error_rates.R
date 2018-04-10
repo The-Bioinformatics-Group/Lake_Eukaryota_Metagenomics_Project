@@ -1,4 +1,8 @@
-filtpath <-  file.path("..", "00_Data", "trimmed") #Change to root of filtered Data
+#path <-  file.path("C:", "Users", "Karamech", "Documents", "Utbildning", "Kandidatarbete", "Data")
+path <-  file.path("..", "00_Data") #Change to root of filtered Data
+filtpath <-  file.path(path, "trimmed")
+cleanpath <- file.path(path, "clean")
+dir.create(cleanpath)
 
 library(dada2); packageVersion("dada2")
 library(ShortRead); packageVersion("ShortRead")
@@ -24,7 +28,6 @@ for(i in 1:length(R2Files)){
 	writeFastq(clean(readFastq(R2Files[i])), file=R2CleanedPath[i], mode="w")
 }
 
-cleanpath <- file.path(path, "clean")
 
 R1Clean <- file.path(cleanpath, list.files(cleanpath, pattern="_R1_"))
 R2Clean <- file.path(cleanpath, list.files(cleanpath, pattern="_R2_"))
