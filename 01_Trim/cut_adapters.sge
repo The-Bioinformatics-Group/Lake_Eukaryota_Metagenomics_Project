@@ -13,8 +13,7 @@ module load cutadapt/v1.10
 limit=5
 DATADIR=../00_Data #Root of all data
 DIRS=$DATADIR/Sample_*				 	#All directories in which to look for data files
-mkdir -p $DATADIR/R1AdaptersRemoved 	#Creating directores for new fastq files
-mkdir -p $DATADIR/R2AdaptersRemoved
+mkdir -p $DATADIR/AdaptersRemoved 		#Creating directory for new fastq files
 
 for D in $DIRS 
 do
@@ -23,10 +22,10 @@ do
 		FILE=${f#$D}
 		if [[ $FILE =~ R1 ]]
     	then
-    		cutadapt -g NNNNCGGTAAYTCCAGCTCYV -o $DATADIR/R1AdaptersRemoved/$FILE $f
+    		cutadapt -g NNNNCGGTAAYTCCAGCTCYV -o $DATADIR/AdaptersRemoved/$FILE $f
     	elif [[ $FILE =~ R2 ]]
     	then
-    		cutadapt -g CCGTCAATTHCTTYAART -o $DATADIR/R2AdaptersRemoved/$FILE $f
+    		cutadapt -g CCGTCAATTHCTTYAART -o $DATADIR/AdaptersRemoved/$FILE $f
     	fi 
     done
     if [ $limit -eq 1 ]
