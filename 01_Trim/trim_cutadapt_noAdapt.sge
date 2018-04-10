@@ -18,6 +18,6 @@ do
    		cutadapt -u -20 -o $DIR/trim_cutadapt/$FILE $f
    	elif [[ $FILE =~ R2 ]]
    	then
-   		cutadapt -u -80 -o $DIR/trim_cutadapt/$FILE $f
+   		cutadapt -u -90 -o $DIR/trim_cutadapt/$FILE $f
    	fi 
 done
