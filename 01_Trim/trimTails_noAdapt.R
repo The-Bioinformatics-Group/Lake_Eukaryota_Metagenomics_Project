@@ -6,8 +6,8 @@ dir.create(TrimPath)
 
 library(ShortRead); packageVersion("ShortRead")
 
-R1Files <- file.path(NoAdapPath, list.files(NoAdapPath, pattern="_R1_"))
-R2Files <- file.path(NoAdapPath, list.files(NoAdapPath, pattern="_R2_"))
+R1Files <- file.path(NoAdapPath, list.files(NoAdapPath, pattern="_R1_001.fastq.gz"))
+R2Files <- file.path(NoAdapPath, list.files(NoAdapPath, pattern="_R2_001.fastq.gz"))
 
 sample.names <- sapply(strsplit(basename(R1Files), "_"), `[`, 1)
 #filt_path <- file.path(path, "filtered") # Path for placing filtered files
