@@ -16,6 +16,6 @@ mkdir -p $DIR/longSeq		 		#Creating directory for new fastq files
 ##Removing too short sequences and writing passing seq to new files 
 for f in $cleanDIR/*.fastq.gz
 do
-	FILE=${f#$NoAdapDIR}
-   	cutadapt -m 100 -o $DIR/trim_cutadapt/$FILE $f
+	FILE=${f#$cleanDIR}
+   	cutadapt -m 100 -o $DIR/longSeq/$FILE $f
 done
