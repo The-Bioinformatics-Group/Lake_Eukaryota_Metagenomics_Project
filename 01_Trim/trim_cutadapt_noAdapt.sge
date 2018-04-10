@@ -15,9 +15,9 @@ do
 	FILE=${f#$NoAdapDIR}
 	if [[ $FILE =~ R1 ]]
    	then
-   		cutadapt -l 280 -o $DIR/trim_cutadapt/$FILE $f
+   		cutadapt --length 280 -o $DIR/trim_cutadapt/$FILE $f
    	elif [[ $FILE =~ R2 ]]
    	then
-   		cutadapt -l 220 -o $DIR/trim_cutadapt/$FILE $f
+   		cutadapt --length 220 -o $DIR/trim_cutadapt/$FILE $f
    	fi 
 done
