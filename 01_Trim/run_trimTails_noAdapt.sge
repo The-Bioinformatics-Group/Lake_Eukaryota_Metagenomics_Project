@@ -1,0 +1,5 @@
+#$ -cwd
+#$ -q node0
+#$ -S /bin/bash
+
+/usr/local/packages/anaconda2/bin/R --no-save --quiet < trimTails_noAdapt.R > trimTails_noAdapt.out
