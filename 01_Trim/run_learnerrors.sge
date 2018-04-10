@@ -1,5 +1,0 @@
-#$ -cwd
-#$ -q node0
-#$ -S /bin/bash
-
-/usr/local/packages/anaconda2/bin/R --no-save --quiet < learn_error_rates.R > learn_error_rates.out
