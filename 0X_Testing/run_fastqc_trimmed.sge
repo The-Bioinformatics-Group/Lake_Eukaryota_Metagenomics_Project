@@ -1,0 +1,8 @@
+#$ -cwd
+#$ -q node0
+#$ -S /bin/bash
+
+module load Fastqc/v0.11.4
+
+fastqc ../00_Data/trimmed/l100e1_R_trim.fastq.gz
+
