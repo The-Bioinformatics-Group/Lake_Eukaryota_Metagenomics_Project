@@ -1,0 +1,23 @@
+#$ -cwd
+#$ -q node0
+#$ -S /bin/bash
+
+#trim with cutadapt
+
+module load cutadapt/v1.10
+
+DIR=../00_Data #Root of all data
+NoAdapDIR=$DIR/AdaptersRemoved			#Directory of files to be trimmed
+mkdir -p $DIR/trim_cutadapt 		#Creating directory for new fastq files
+
+for f in $NoAdapDIR/*.fastq.gz
+do
+	FILE=${f#$NoAdapDIR}
+	if [[ $FILE =~ R1 ]]
+   	then
+   		cutadapt -l 280 -o $DIR/trim_cutadapt/$FILE $f
+   	elif [[ $FILE =~ R2 ]]
+   	then
+   		cutadapt -l 220 -o $DIR/trim_cutadapt/$FILE $f
+   	fi 
+done
