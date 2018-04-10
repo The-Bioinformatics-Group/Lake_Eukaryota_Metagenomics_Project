@@ -1,9 +1,9 @@
 
-## Trimming sequences using trimTails which uses sliding window 2*halfwith+1
-## If a window contains k bases with phred score <= a the sequence is cut 
-## at the start of the window
-## Uses the dataset where primers have already been removed
-## One of two method used for trimming the data 
+## Trimming poor quality data using trimTails. 
+## Uses sliding window 2*halfwith+1, if a window contains k bases with phred 
+## score <= a the sequence is cut at the start of the window
+## Uses the dataset where primers have already been removed, creates new directory for trimmed files
+## One of two method used for trimming the data. Produces sequences of variable length
 
 #path <-  file.path("C:", "Users", "Karamech", "Documents", "Utbildning", "Kandidatarbete", "Data")
 path <-  file.path("..", "00_Data") #Change to root of filtered Data
