@@ -26,7 +26,7 @@ do
     		cutadapt -g NNNNCGGTAAYTCCAGCTCYV -o $DATADIR/R1AdaptersRemoved/$FILE $f
     	elif [[ $FILE =~ R2 ]]
     	then
-    		cutadapt -u 15 -o $DATADIR/R2AdaptersRemoved/$FILE $f
+    		cutadapt -g CCGTCAATTHCTTYAART -o $DATADIR/R2AdaptersRemoved/$FILE $f
     	fi 
     done
     if [ $limit -eq 1 ]
