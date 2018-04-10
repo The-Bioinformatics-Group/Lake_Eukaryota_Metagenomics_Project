@@ -2,4 +2,4 @@
 #$ -q node0
 #$ -S /bin/bash
 
-/usr/local/packages/anaconda2/bin/R --no-save --quiet < trimTails_noAdapt.R > trimTails_noAdapt.out
+module load R/v.3.2.3 --no-save --quiet < trimTails_noAdapt.R > trimTails_noAdapt.out
