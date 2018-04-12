@@ -7,4 +7,4 @@ module load MultiQC/v1.5
 DIR=../00_Data 						#Root of all data
 ForDIR=$DIR/longSeq					#Directory of files to summarized
 
-multiqc $ForDIR
+multiqc -o $ForDIR $ForDIR
