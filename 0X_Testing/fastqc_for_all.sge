@@ -1,0 +1,13 @@
+#$ -cwd
+#$ -q node0
+#$ -S /bin/bash
+
+module load Fastqc/v0.11.4
+
+DIR=../00_Data 						#Root of all data
+AnalyseDIR=$DIR/longSeq				#Directory of files to be trimmed
+
+for f in $AnalyseDIR/*.fastq.gz
+do
+	fastqc $f	
+done
