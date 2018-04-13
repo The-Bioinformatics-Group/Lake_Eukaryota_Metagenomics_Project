@@ -5,7 +5,7 @@
 module load Fastqc/v0.11.4
 
 DIR=../00_Data 						#Root of all data
-AnalyseDIR=$DIR/longSeq				#Directory of files to be analysed
+AnalyseDIR=$DIR/cleaned2			#Directory of files to be analysed
 
 for f in $AnalyseDIR/*.fastq.gz
 do
