@@ -1,3 +1,7 @@
+## Test for testing learnErrors
+## and analysing the the error models through plotErrors
+## All sequences must not contain ambiguous bases and be longer than 5 bases
+
 #path <-  file.path("C:", "Users", "Karamech", "Documents", "Utbildning", "Kandidatarbete", "Data")
 path <-  file.path("..", "00_Data") #Change to root of filtered Data
 cleanpath <- file.path(path, "cleaned")

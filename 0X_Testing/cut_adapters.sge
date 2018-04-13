@@ -19,20 +19,20 @@ for D in $DIRS
 do
 	for f in $D/*.fastq.gz
 	do
-		FILE=${f#$D}
-		if [[ $FILE =~ R1 ]]
+		FILE=${f#$D}         #Removing directory form file name 
+		if [[ $FILE =~ R1 ]] #If file name contains R1
     	then
-    		cutadapt -g NNNNCGGTAAYTCCAGCTCYV -o $DATADIR/AdaptersRemoved/$FILE $f
+    		cutadapt -g NNNNCGGTAAYTCCAGCTCYV -o $DATADIR/AdaptersRemoved/$FILE $f    #Removing second half of primer 574*f 
     	elif [[ $FILE =~ R2 ]]
     	then
-    		cutadapt -g CCGTCAATTHCTTYAART -o $DATADIR/AdaptersRemoved/$FILE $f
+    		cutadapt -g CCGTCAATTHCTTYAART -o $DATADIR/AdaptersRemoved/$FILE $f       #Removing second half of primer 1132r
     	fi 
     done
-    if [ $limit -eq 1 ]
+    if [ $limit -eq 1 ]     #if read enough samples, exit loop
     then
     	break
     fi
-    let limit-=1
+    let limit-=1            #increasing number of samples processed
 done
 
 

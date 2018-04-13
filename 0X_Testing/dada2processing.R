@@ -65,7 +65,6 @@ errR <- learnErrors(R2FilteredPath, multithread=FALSE)
 # plotErrors(errF, nominalQ=TRUE)
 # plotErrors(errR, nominalQ=TRUE)
 
-
 ##Dereplicate the filtered files (removing duplicates of sequences)
 derepF <- derepFastq(R1FilteredPath, verbose=TRUE) #Reading all files to memory? May have to modify befor running all data
 derepR <- derepFastq(R2FilteredPath, verbose=TRUE)
@@ -81,4 +80,4 @@ dadaR <- dada(derepR, err=errR, multithread=FALSE)
 
 ##Merge paired reads
 # mergers <- mergePairs(dadaF, derepF, dadaR, derepR, verbose=TRUE) 
-#Should merge F and R reads but does not, need to check if read overlap default for function is min 20 nts
+#Should merge F and R reads but does not, no overlap in reads 
