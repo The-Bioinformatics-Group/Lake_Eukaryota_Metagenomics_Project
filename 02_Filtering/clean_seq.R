@@ -5,8 +5,8 @@
 
 #path <-  file.path("C:", "Users", "Karamech", "Documents", "Utbildning", "Kandidatarbete", "Data")
 path <-  file.path("..", "00_Data") #Change to root of filtered Data
-toClean <-  file.path(path, "trimmedTailsw") #Set to correct folder of files you want to clean
-cleanPath <- file.path(path, "cleaned") #path of new directory
+toClean <-  file.path(path, "trim_cutadapt") #Set to correct folder of files you want to clean
+cleanPath <- file.path(path, "cleaned2") #path of new directory
 
 library(ShortRead); packageVersion("ShortRead")
 
