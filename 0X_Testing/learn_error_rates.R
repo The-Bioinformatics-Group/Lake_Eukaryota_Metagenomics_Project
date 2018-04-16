@@ -4,17 +4,19 @@
 
 #path <-  file.path("C:", "Users", "Karamech", "Documents", "Utbildning", "Kandidatarbete", "Data")
 path <-  file.path("..", "00_Data") #Change to root of filtered Data
-cleanpath <- file.path(path, "cleaned")
+learnPath <- file.path(path, "cleaned2")
 
 library(dada2); packageVersion("dada2")
 
-R1Clean <- file.path(cleanpath, list.files(cleanpath, pattern="_R1_"))
-R2Clean <- file.path(cleanpath, list.files(cleanpath, pattern="_R2_"))
+R1learn <- file.path(learnPath, list.files(learnPath, pattern="R1_001.fastq.gz"))
+R2learn <- file.path(learnPath, list.files(learnPath, pattern="R2_001.fastq.gz"))
 
 ##Learning error rates of the filtered files(Computationally intesive)
-errF <- learnErrors(R1Clean, multithread=FALSE)
-errR <- learnErrors(R2Clean, multithread=FALSE)
+errF <- learnErrors(R1learn, multithread=TRUE)
+errR <- learnErrors(R2learn, multithread=TRUE)
 
 # Can plot error rates
+pdf(file.path(learnPath, "errors.pdf"))
 plotErrors(errF, nominalQ=TRUE)
 plotErrors(errR, nominalQ=TRUE)
+dev.off()
