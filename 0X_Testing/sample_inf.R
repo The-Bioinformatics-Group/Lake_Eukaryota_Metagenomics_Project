@@ -4,11 +4,13 @@
 
 #path <-  file.path("C:", "Users", "Karamech", "Documents", "Utbildning", "Kandidatarbete", "Data")
 path <-  file.path("..", "00_Data") #Path to root of all data
-TnFpath <- file.path(path, "longSeq") #Path to directory of sequences that have been trimmed and filtered
+TnFpath <- file.path(path, "cleaned2") #Path to directory of sequences that have been trimmed and filtered
+
+library(dada2); packageVersion("dada2")
 
 #finding files from path
-R1files <- file.path(TnFpath, list.files(cleanpath, pattern="_R1_"))
-R2files <- file.path(TnFpath, list.files(cleanpath, pattern="_R2_"))
+R1files <- file.path(TnFpath, list.files(TnFpath, pattern="R1_001.fastq.gz"))
+R2files <- file.path(TnFpath, list.files(TnFpath, pattern="R2_001.fastq.gz"))
 
 ##Learning error rates of the filtered files(Computationally intesive)
 errF <- learnErrors(R1files, multithread=FALSE)
@@ -29,6 +31,7 @@ names(derepR) <- sample.names
 dadaF <- dada(derepF, err=errF, multithread=FALSE)
 dadaR <- dada(derepR, err=errR, multithread=FALSE)
 
-##Merge paired reads
-# mergers <- mergePairs(dadaF, derepF, dadaR, derepR, verbose=TRUE) 
+##Concatunate paired reads
+
+mergers <- mergePairs(dadaF, derepF, dadaR, derepR, justConcatenate=TRUE, verbose=TRUE) 
 #Should merge F and R reads but does not, need to check if read overlap default for function is min 20 nts

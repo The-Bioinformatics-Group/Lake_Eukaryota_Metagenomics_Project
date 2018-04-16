@@ -2,4 +2,4 @@
 #$ -q node0
 #$ -S /bin/bash
 
-run -it -w $PWD --rm -v /home/$USER:/home/$USER dada2:1.6.0-1-gbadb111 R --no-save --quiet < trim_tails.R > trim_tails.out
+run -it -w $PWD --rm -v /home/$USER:/home/$USER dada2:1.6.0-1-gbadb111 R --no-save --quiet < test_R.R > test_R.out

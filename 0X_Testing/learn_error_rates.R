@@ -16,5 +16,6 @@ errF <- learnErrors(R1Clean, multithread=FALSE)
 errR <- learnErrors(R2Clean, multithread=FALSE)
 
 # Can plot error rates
+
 plotErrors(errF, nominalQ=TRUE)
 plotErrors(errR, nominalQ=TRUE)
