@@ -1,0 +1,5 @@
+> #path <-  file.path("C:", "Users", "Karamech", "Documents", "Utbildning", "Kandidatarbete", "Data")
+> path <-  file.path("..", "00_Data") #Change to root of filtered Data
+> cleanpath <- file.path(path, "cleaned")
+> 
+> library(dada2); packageVersion("dada2")

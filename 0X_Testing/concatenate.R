@@ -11,3 +11,4 @@ derepR <- readRDS(file.path(TnFpath, "derepR.rds"))
 mergers <- mergePairs(dadaF, derepF, dadaR, derepR, justConcatenate=TRUE, verbose=TRUE)
 
 saveRDS(mergers, file.path(TnFpath, "mergers.rds"))
+
