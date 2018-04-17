@@ -1,5 +1,5 @@
 path <-  file.path("..", "00_Data") #Path to root of all data
-TnFpath <- file.path(path, "clean_and_matched_1") #Path to directory of sequences that have been trimmed and filtered
+TnFpath <- file.path(path, "clean_and_matched_2") #Path to directory of sequences that have been trimmed and filtered
 
 library(dada2); packageVersion("dada2")
 
@@ -15,4 +15,5 @@ seqtab <- makeSequenceTable(mergers)
 seqtab.nochim <- removeBimeraDenovo(seqtab, method="consensus", multithread=TRUE, verbose=TRUE)
 dim(seqtab.nochim)
 
-saveRDS(TnFpath, "seqTab.rds")
+saveRDS(seqtab, file.path(TnFpath, "seqTab.rds"))
+saveRDS(seqtab.nochim, file.path(TnFpath, "nochim.rds"))
