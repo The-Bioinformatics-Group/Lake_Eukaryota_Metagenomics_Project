@@ -2,6 +2,8 @@
 #$ -q node0
 #$ -S /bin/bash
 
+## Runs trimTails_noAdapt.R non-interactively
+
 module load R/v.3.2.3 
 
 R --no-save --quiet < trimTails_noAdapt.R > trimTails_noAdapt.out
