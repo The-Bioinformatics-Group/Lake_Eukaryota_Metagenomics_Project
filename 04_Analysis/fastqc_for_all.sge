@@ -2,12 +2,15 @@
 #$ -q node0
 #$ -S /bin/bash
 
+## Runs fastqc for all files in a specified directory
+## saves reports in the same directory
+
 module load Fastqc/v0.11.4
 
 DIR=../00_Data 						#Root of all data
 AnalyseDIR=$DIR/cleaned2			#Directory of files to be analysed
 
-for f in $AnalyseDIR/*.fastq.gz
+for f in $AnalyseDIR/*.fastq.gz		#For all zipped data files in directory run fastqc
 do
 	fastqc $f	
 done

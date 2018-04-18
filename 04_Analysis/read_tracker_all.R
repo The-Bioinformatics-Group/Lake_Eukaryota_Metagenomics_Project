@@ -1,3 +1,7 @@
+## Prints the number of reads in each sample after each step in the data processing
+## Prints for both data sets/ trimming methods
+## Not fully implemented
+
 path <-  file.path("..", "00_Data") #Path to root of all data
 TnFpath1 <- file.path(path, "clean_and_matched_1") #Path to directory of sequences that have been trimmed and filtered
 TnFpath2 <- file.path(path, "clean_and_matched_2")
@@ -39,14 +43,12 @@ sample.names <- sapply(strsplit(basename(files), "_"), `[`, 1)
 print("Analysis alt 1")
 getN <- function(x) sum(getUniques(x))
 track <- cbind(NoAdap[, "read"], Trim[, "read"], Filt[, "read"], sapply(dadaF1, getN), sapply(mergers1, getN), rowSums(seqtab1), rowSums(nochim1))
-# If processing a single sample, remove the sapply calls: e.g. replace sapply(dadaFs, getN) with getN(dadaFs)
 colnames(track) <- c("noAdap", "trimmed", "filtered", "denoised", "merged", "tabled", "nonchim")
 rownames(track) <- sample.names
 print(track)
 
 print("Analysis alt 2")
 track <- cbind(sapply(dadaF2, getN), sapply(mergers2, getN), rowSums(seqtab2), rowSums(nochim2))
-# If processing a single sample, remove the sapply calls: e.g. replace sapply(dadaFs, getN) with getN(dadaFs)
 colnames(track) <- c("denoised", "merged", "tabled", "nonchim")
 rownames(track) <- sample.names
 print(track)

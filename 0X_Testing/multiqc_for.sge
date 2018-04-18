@@ -2,9 +2,6 @@
 #$ -q node0
 #$ -S /bin/bash
 
-## Runs multiqc for a specified directory
-## saves reporte in same directory 
-
 module load MultiQC/v1.5
 
 DIR=../00_Data 						#Root of all data
