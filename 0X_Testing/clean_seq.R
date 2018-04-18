@@ -1,5 +1,5 @@
 
-## Removes all sequences in teh data containing any ambigous base (eg. and other letter than A, T, C, G)
+## Removes all sequences in the data containing any ambigous base (eg. and other letter than A, T, C, G)
 ## using the method clean
 ## Writes clean sequenses to files in new directory "cleaned"
 
