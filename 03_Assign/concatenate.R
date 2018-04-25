@@ -4,7 +4,7 @@
 ## Saves the merging to RDS file in the same directory
 
 path <-  file.path("..", "00_Data") #Path to root of all data
-TnFpath <- file.path(path, "clean_and_matched_1") #Path to directory containing dada2 objects as RDS files
+TnFpath <- file.path(path, "clean_and_matched_2") #Path to directory containing dada2 objects as RDS files
 
 ##Load package
 library(dada2); packageVersion("dada2")

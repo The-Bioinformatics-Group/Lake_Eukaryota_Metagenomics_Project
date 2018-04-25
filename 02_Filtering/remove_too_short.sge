@@ -1,3 +1,4 @@
+#!/bin/bash
 #$ -cwd
 #$ -q node0
 #$ -S /bin/bash
@@ -9,13 +10,13 @@
 module load cutadapt/v1.10
 
 DIR=../00_Data 						#Root of all data
-cleanDIR=$DIR/cleaned				#Directory of files to be filtered
+trimDIR=$DIR/trimmedTailsw				#Directory of files to be filtered
 mkdir -p $DIR/longSeq		 		#Creating directory for new fastq files
 
 ##Looping over all files in directory of files to be checked
 ##Removing too short sequences and writing passing seq to new files 
-for f in $cleanDIR/*.fastq.gz
+for f in $trimDIR/*.fastq.gz
 do
-	FILE=${f#$cleanDIR}
+	FILE=${f#$trimDIR}
    	cutadapt -m 100 -o $DIR/longSeq/$FILE $f
 done

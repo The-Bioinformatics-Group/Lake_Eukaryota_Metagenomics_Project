@@ -42,6 +42,6 @@ sample.names <- sapply(strsplit(basename(files), "_"), `[`, 1)
 print("Analysis alt 1")
 getN <- function(x) sum(getUniques(x))
 track <- cbind(NoAdap[, "read"], Trim[, "read"], Filt1[, "read"], Filt2[, "read"], sapply(dadaF1, getN), sapply(mergers1, getN), rowSums(seqtab1), rowSums(nochim1))
-colnames(track) <- c("noAdap", "trimmed", "filtered", "matched" "denoised", "merged", "tabled", "nonchim")
+colnames(track) <- c("noAdap", "trimmed", "filtered", "matched", "denoised", "merged", "tabled", "nonchim")
 rownames(track) <- sample.names
 print(track)

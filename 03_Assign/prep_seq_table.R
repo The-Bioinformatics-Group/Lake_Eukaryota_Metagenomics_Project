@@ -4,7 +4,7 @@
 ## separate RDS files to the same directory
 
 path <-  file.path("..", "00_Data") #Path to root of all data
-TnFpath <- file.path(path, "clean_and_matched_2") #Path to directory containing RDS file with mergers object
+TnFpath <- file.path(path, "clean_and_matched_1") #Path to directory containing RDS file with mergers object
 
 ##Load package
 library(dada2); packageVersion("dada2")
@@ -17,7 +17,7 @@ seqtab <- makeSequenceTable(mergers)
 
 ##Remove bimeras from sequence table and save as new table
 seqtab.nochim <- removeBimeraDenovo(seqtab, method="consensus", multithread=TRUE, verbose=TRUE)
-#dim(seqtab.nochim)
+dim(seqtab.nochim)
 
 ##Save both sequence tables to file
 saveRDS(seqtab, file.path(TnFpath, "seqTab.rds"))

@@ -1,3 +1,4 @@
+#!/bin/bash
 #$ -cwd
 #$ -q node0
 #$ -S /bin/bash
@@ -7,9 +8,9 @@
 ## Uses the dataset where primers have already been removed, creates new directory for trimmed files
 ## One of two method used for trimming the data. Less stringent than trimTails 
 
-module load cutadapt/v1.10
+#module load cutadapt/v1.10
 
-DIR=../00_Data 						#Root of all data
+DIR=../00_Data 				#Root of all data
 NoAdapDIR=$DIR/AdaptersRemoved		#Directory of files to be trimmed
 mkdir -p $DIR/trim_cutadapt 		#Creating directory for new fastq files
 

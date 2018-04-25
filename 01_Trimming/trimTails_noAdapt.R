@@ -1,4 +1,3 @@
-
 ## Trimming poor quality data using trimTails. 
 ## Uses sliding window 2*halfwith+1, if a window contains k bases with phred 
 ## score <= a the sequence is cut at the start of the window

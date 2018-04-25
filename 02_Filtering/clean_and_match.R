@@ -4,7 +4,7 @@
 ## Creates new directory for clean and matched files 
 
 path <-  file.path("..", "00_Data") #Change to root of filtered Data
-TrimPath <- file.path(path, "trim_cutadapt") #Directory of trimmed (and filtered) files
+TrimPath <- file.path(path, "longSeq") #Directory of trimmed (and filtered) files
 
 ##Load library
 library(dada2); packageVersion("dada2")
@@ -15,11 +15,11 @@ R2files <- file.path(TrimPath, list.files(TrimPath, pattern="_R2_001.fastq.gz"))
 sample.names <- sapply(strsplit(basename(R1files), "_"), `[`, 1)
 
 ##Create new directory
-dir.create(file.path(path, "clean_and_matched_2"))
+dir.create(file.path(path, "clean_and_matched_1"))
 
 ##Path and names of new fles
-R1newPath <- file.path(path, "clean_and_matched_2", paste0(sample.names, "_R1_001.fastq.gz"))
-R2newPath <- file.path(path, "clean_and_matched_2", paste0(sample.names, "_R2_001.fastq.gz"))
+R1newPath <- file.path(path, "clean_and_matched_1", paste0(sample.names, "_R1_001.fastq.gz"))
+R2newPath <- file.path(path, "clean_and_matched_1", paste0(sample.names, "_R2_001.fastq.gz"))
 
 ##For every pair of files, do paired filtering and output to new pair of files
 for(i in 1:length(R1files)){

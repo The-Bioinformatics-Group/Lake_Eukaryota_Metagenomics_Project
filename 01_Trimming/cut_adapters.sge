@@ -1,3 +1,4 @@
+#!/bin/bash
 #$ -cwd
 #$ -q node0
 #$ -S /bin/bash
@@ -7,12 +8,12 @@
 ##Specifies what to cut depenting on if the file contains forward(R1) or reverse(R2) reads
 ##Set limit to max number of samples that should be processed
 
-module load cutadapt/v1.10
-## module load Fastqc/v0.11.4
+#module load cutadapt/v1.10
+#module load Fastqc/v0.11.4
 
-limit=5
+#limit=5
 DATADIR=../00_Data #Root of all data
-DIRS=$DATADIR/Sample_*				 	#All directories in which to look for data files
+DIRS=$DATADIR/Sample_*				#All directories in which to look for data files
 mkdir -p $DATADIR/AdaptersRemoved 		#Creating directory for new fastq files
 
 for D in $DIRS 
@@ -28,11 +29,11 @@ do
     		cutadapt -g CCGTCAATTHCTTYAART -o $DATADIR/AdaptersRemoved/$FILE $f       #Removing second half of primer 1132r
     	fi 
     done
-    if [ $limit -eq 1 ]     #if read enough samples, exit loop
-    then
-    	break
-    fi
-    let limit-=1            #increasing number of samples processed
+#    if [ $limit -eq 1 ]     #if read enough samples, exit loop
+#    then
+#    	break
+#    fi
+#    let limit-=1            #increasing number of samples processed
 done
 
 
