@@ -14,7 +14,7 @@ taxa <- readRDS(file.path(TnFpath, "taxa.rds"))
 
 ##Formating sample data. Metadata can/should be included here.
 samples.out <- rownames(nochim)
-subject <- sapply(strsplit(sample.out, "_"), `[`, 1)
+subject <- sapply(strsplit(samples.out, "_"), `[`, 1)
 samdf <- data.frame(Subject=subject)
 rownames(samdf) <- samples.out
 
