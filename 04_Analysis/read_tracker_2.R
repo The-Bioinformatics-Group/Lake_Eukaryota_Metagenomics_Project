@@ -5,7 +5,7 @@
 path <-  file.path("..", "00_Data") #Path to root of all data
 TnFpath2 <- file.path(path, "clean_and_matched_2") #Path to directory of sequences that have been trimmed and filtered
 
-files <- list.files(TnFpath1, pattern="R1_001.fastq.gz")
+files <- list.files(TnFpath2, pattern="R1_001.fastq.gz")
 
 library(dada2); packageVersion("dada2")
 library(ShortRead); packageVersion("ShortRead")
