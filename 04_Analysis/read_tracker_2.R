@@ -14,8 +14,8 @@ library(ShortRead); packageVersion("ShortRead")
 
 #Adapters removed
 AdapFiles <- dir("../00_Data/AdaptersRemoved", "*R1_001.fastq.gz")
-qaSummary <- qa(file.path(path, "AdaptersRemoved", AdapFiles), type="fastq")
-NoAdap <- head(qaSummary[["readCounts"]])
+qaSummaryAdap <- qa(file.path(path, "AdaptersRemoved", AdapFiles), type="fastq")
+NoAdap <- head(qaSummaryAdap[["readCounts"]])
 
 #Trimmed 1
 TrimFiles <- dir("../00_Data/trim_catadapt", "*R1_001.fastq.gz")
