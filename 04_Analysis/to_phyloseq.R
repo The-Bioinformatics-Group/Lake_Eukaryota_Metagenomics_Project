@@ -12,14 +12,18 @@ library(phyloseq); packageVersion("phyloseq")
 nochim <- readRDS(file.path(TnFpath, "nochim.rds"))
 taxa <- readRDS(file.path(TnFpath, "taxa.rds"))
 
+##Normalize data
+prob <- drarefy(nochim, sample=5666)
+norm <- nochim*prob
+
 ##Formating sample data. Metadata can/should be included here.
-samples.out <- rownames(nochim)
+samples.out <- rownames(norm)
 subject <- sapply(strsplit(samples.out, "_"), `[`, 1)
 samdf <- data.frame(Subject=subject)
 rownames(samdf) <- samples.out
 
 ##Creating and saving phyloseq object
-psS <- phyloseq(otu_table(nochim, taxa_are_rows=FALSE), sample_data(samdf), tax_table(taxa))
+psS <- phyloseq(otu_table(norm, taxa_are_rows=FALSE), sample_data(samdf), tax_table(taxa))
 #saveRDS(ps, file.path(TnFpath, "ps.rds"))
 
 metafile <- read.csv(file.path(path, "100lakes_metadata_ed_1.csv"), sep=";")
