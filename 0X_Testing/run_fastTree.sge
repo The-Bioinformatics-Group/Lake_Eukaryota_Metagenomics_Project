@@ -1,0 +1,12 @@
+#$ -cwd
+#$ -q node0
+#$ -S /bin/bash
+
+## 
+
+module load FastTree/v2.1.9
+
+DIR=../00_Data 						#Root of all data
+alignedDIR=$DIR/mothur_out_2		#Directory comtaining file with aligned sequences
+
+FastTree -gtr -nt < $alignedDIR/seq.align > $alignedDIR/tree.tree
