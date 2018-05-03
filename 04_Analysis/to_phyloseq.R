@@ -29,7 +29,10 @@ psS <- phyloseq(otu_table(norm, taxa_are_rows=FALSE), sample_data(samdf), tax_ta
 metafile <- read.csv(file.path(path, "100lakes_metadata_ed_1.csv"), sep=";")
 metadata <- array(metafile, dimnames=list(sample_names(psS), colnames(metafile)))
 
-vardata = sample_data(data.frame(Sample=metadata["sampleID"], Latitude=metadata["Latitude"], pH=metadata["pH"]))
+vardata = sample_data(data.frame(Sample=metadata["sampleID"], Latitude=metadata["Latitude"], Longitude=metadata["Longitude"], 
+	Area=metadata["Area"], CatchmentArea=metadata["Catchment"], SecchiDepth=metadata["Siktdjup"], Oxygen=metadata["Syrgashalt"], 
+	pH=metadata["pH"], Conductivity=metadata["Kond_25"], TOC=metadata["TOC"], TotalP=metadata["TotP"],
+	TotalN=metadata["TotN_TNb"], Temperature=metadata["Vattentemperatur"]))
 psS1 <- merge_phyloseq(psS, vardata)
 
 psS1.na = subset_taxa(psS1, is.na(Family))
