@@ -1,0 +1,17 @@
+#$ -cwd
+#$ -pe mpich 40
+#$ -q Annotation-4
+#$ -S /bin/bash
+
+#DIR=../00_Data 						#Root of all data
+#treeDIR=$DIR/mothur_out_2			#Directory comtaining file with aligned sequences
+
+module load RaxML/v8.2.9
+# 1. BEST TREE
+raxmlHPC-PTHREADS-SSE3 -T $NSLOTS -m GTRGAMMA -c 25 -f d -t phylo.tree -s seq.align -n n1 -p 1111
+
+# 2. BOOTSTRAP
+raxmlHPC-PTHREADS-SSE3 -T $NSLOTS -m GTRGAMMA -c 25 -f d -t phylo.tree -s seq.align -n n2 -p 1111 -b 1111 -N 500
+
+# 3. Add bootstrap values to best tree
+raxmlHPC-PTHREADS-SSE3 -T $NSLOTS -m GTRGAMMA -f b -t RAxML_bestTree.n1 -z RAxML_bootstrap.n2 -n n3
