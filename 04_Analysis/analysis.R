@@ -40,18 +40,31 @@ phylo$tip.label <- newlabels
 psS <- phyloseq(otu_table(norm, taxa_are_rows=FALSE), sample_data(samdf), tax_table(taxa), phy_tree(phylo))
 #saveRDS(ps, file.path(TnFpath, "ps.rds"))
 
+
+######################### Metadata and diversity ########################################################
 metafile <- read.csv(file.path(path, "100lakes_metadata_ed_1.csv"), sep=";")
 metadata <- array(metafile, dimnames=list(sample_names(psS), colnames(metafile)))
 
-vardata = sample_data(data.frame(Latitude=metadata["Latitude"], Longitude=metadata["Longitude"], 
-	Area=metadata["Area"], CatchmentArea=metadata["Catchment"], SecchiDepth=metadata["Siktdjup"], Oxygen=metadata["Syrgashalt"], 
+vardata = sample_data(data.frame(Latitude=metadata["Latitude"], Longitude=metadata["Longitude"], Aluminum=metadata["AlICPAES"], 
+	AlkAcid=metadata["AlkAcid"], Turbidity=metadata["Turb_FNU"], Area=metadata["Area"], CatchmentArea=metadata["Catchment"], 
+	Agriculture=metadata["Agriculturalkm"], Wetland=metadata["Wetlandkm"], Urban=metadata["Urbankm"], Grassland=metadata["Grassbarekm"], 
+	ConiferousForest=metadata["Con_fores"], DeciduousForest=metadata["Dec_forest"], MixedForest=metadata["Forest"],
+	CatchmentLakeRatio=metadata["CLratio"], SecchiDepth=metadata["Siktdjup"], Oxygen=metadata["Syrgashalt"], 
 	pH=metadata["pH"], Conductivity=metadata["Kond_25"], TOC=metadata["TOC"], TotalP=metadata["TotP"],
 	TotalN=metadata["TotN_TNb"], Temperature=metadata["Vattentemperatur"]))
 
 vardata1 <- decostand(vardata, "stand", na.rm=TRUE)
 
-psS1 <- merge_phyloseq(psS, vardata2)
+#Shannon diversity
+ShanDiv <- diversity(norm, index = "shannon", MARGIN = 1, base = exp(1))
+MShanDiv <- matrix(ShanDiv)
+rownames(MShanDiv) <- names(ShanDiv)
+colnames(MShanDiv) <- "Shannon_Div"
+allData = cbind(vardata1, MShanDiv)
 
+psS1 <- merge_phyloseq(psS, allData)
+
+######## Phyloseq tests ########################
 #psS1.na = subset_taxa(psS1, is.na(Family))
 #tax_table(psS1.na)[1:10, 1:6]
 #psS1.notna = subset_taxa(psS1, !is.na(Family))
@@ -67,17 +80,13 @@ psS.top20 <- prune_taxa(top20, psS.top20)
 
 
 ##########################Correlation matrix####################################
-res <- rcorr(as.matrix(vardata1), type = "spearman")
-# Extract the correlation coefficients
-res$r
-# Extract p-values
-res$P
-#Visualize
+## allData1 <- decostand(allData, "stand", na.rm=TRUE) #Normalize after adding diversity?
+res <- rcorr(as.matrix(allData1), type = "spearman")
+# Extract the correlation coefficients and p-values with res$r & res$P
+#Visualize p-values
 symnum(res$P, abbr.colnames = TRUE)
 
-#Shannon diversity
-ShanDiv <- diversity(norm, index = "shannon", MARGIN = 1, base = exp(1))
-MShanDiv <- matrix(ShanDiv)
-rownames(MShanDiv) <- names(ShanDiv)
-colnames(MShanDiv) <- "Shannon_Div"
-allData = cbind(vardata1, MShanDiv)
+####### Plot correlation - heat map #######
+library(reshape2)
+melted_res <- melt(res$P)
+ggplot(data = melted_res, aes(x=Var1, y=Var2, fill=value)) + geom_tile()
