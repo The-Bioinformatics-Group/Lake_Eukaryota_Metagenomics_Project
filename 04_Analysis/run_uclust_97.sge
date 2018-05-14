@@ -7,4 +7,7 @@ module load uclust/v1.2.22
 
 DIR=../00_Data/mothur_out_2 						
 
-uclust --input $DIR/seq_man_unique.fst --uc $DIR/results.uc --id 0.97
+#uclust --input $DIR/seq_man_unique.fst --uc $DIR/results.uc --id 0.97
+
+uclust --uc2fasta $DIR/results.uc --input $DIR/seq_uclust.fasta --output results.fasta
+
