@@ -1,4 +1,5 @@
 #$ -cwd
+#$ -pe mpich 4
 #$ -q node0
 #$ -S /bin/bash
 
